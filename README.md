@@ -4,13 +4,18 @@
 To implement a Multilayer Perceptron for Multi classification
 
 ## EQUIPMENTS REQUIRED:
+
 Hardware – PCs
+
 Anaconda – Python 3.7 Installation / Google Colab /Jupiter Notebook
 
 ## RELATED THEORETICAL CONCEPT:
 
+
 A multilayer perceptron (MLP) is a feedforward artificial neural network that generates a set of outputs from a set of inputs. An MLP is characterized by several layers of input nodes connected as a directed graph between the input and output layers. MLP uses back propagation for training the network. MLP is a deep learning method.
+
 A multilayer perceptron is a neural network connecting multiple layers in a directed graph, which means that the signal path through the nodes only goes one way. Each node, apart from the input nodes, has a nonlinear activation function. An MLP uses backpropagation as a supervised learning technique.
+
 MLP is widely used for solving problems that require supervised learning as well as research into computational neuroscience and parallel distributed processing. Applications include speech recognition, image recognition and machine translation.
  
 MLP has the following features:
@@ -120,15 +125,24 @@ Normalize our dataset.
 ## PROGRAM 
 
 # Include necessary libraries
+
 import pandas as pd
+
 import sklearn
+
+
 from sklearn import preprocessing
+
 from sklearn.model_selection import train_test_split
+
 from sklearn.preprocessing import StandardScaler
+
 from sklearn.neural_network import MLPClassifier
+
 from sklearn.metrics import classification_report, confusion_matrix
 
 df = pd.read_csv('IRIS.csv')
+
 df.head
 
 names = ['sepal-length','sepal-width','petal-length','petal-width','Class']
