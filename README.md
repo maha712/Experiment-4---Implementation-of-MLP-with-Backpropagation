@@ -119,6 +119,87 @@ Normalize our dataset.
 
 ## PROGRAM 
 
+# Include necessary libraries
+import pandas as pd
+import sklearn
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+
+df = pd.read_csv('IRIS.csv')
+df.head
+
+names = ['sepal-length','sepal-width','petal-length','petal-width','Class']
+
+# Take first 4 columns ans assign them to variable "X"
+X = df.iloc[:,0:4]
+# Take first 5th columns and assign them to variable "Y"
+Y = df.select_dtypes(include=[object])
+X.head()
+Y.head()
+
+# Y contains all categories or classes
+Y.species.unique()
+
+# Transforming categorial into numerical values
+le = preprocessing.LabelEncoder()
+Y = Y.apply(le.fit_transform)
+Y.head()
+
+# Train and test split
+X_train, X_test, Y_train, Y_test = train_test_split(X,Y,test_size = 0.20)
+
+# Feature Scaling
+scaler = StandardScaler() 
+scaler.fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+mlp = MLPClassifier(hidden_layer_sizes=(10,10,10),max_iter=1000)
+mlp.fit(X_train,Y_train.values.ravel())
+predictions = mlp.predict(X_test)
+print(predictions)
+
+# Evaluation of algorithm performance in classifying flowers
+print(confusion_matrix(Y_test,predictions))
+print(classification_report(Y_test,predictions))
+
+
+
+
+
 ## OUTPUT 
 
-## RESULT
+Dataset Labels :
+
+![n4 1](https://github.com/maha712/Experiment-4---Implementation-of-MLP-with-Backpropagation/assets/121156360/a8f42835-2914-4bb2-9d91-8c41b66d0b1a)
+
+X.head() :
+
+![n 4 2](https://github.com/maha712/Experiment-4---Implementation-of-MLP-with-Backpropagation/assets/121156360/2434b8c0-eb97-4897-b37b-86691159ef1d)
+
+Y.head() :
+
+![n 4 3](https://github.com/maha712/Experiment-4---Implementation-of-MLP-with-Backpropagation/assets/121156360/8fbdbd9d-a6a0-4ee7-bef5-83873e40a62b)
+
+Unique Values in Y :
+
+![n4 4](https://github.com/maha712/Experiment-4---Implementation-of-MLP-with-Backpropagation/assets/121156360/c978312b-c750-4fd0-b286-5c506f73740b)
+
+Predictions :
+
+![n4 5](https://github.com/maha712/Experiment-4---Implementation-of-MLP-with-Backpropagation/assets/121156360/1bfe535e-6e6b-4c4d-97e2-00ca5cdad3af)
+
+Confusion Matrix :
+
+![n 4 6](https://github.com/maha712/Experiment-4---Implementation-of-MLP-with-Backpropagation/assets/121156360/f5995251-2844-43d3-b2de-d0043a9ebd9b)
+
+Classification Report :
+
+![n4 7](https://github.com/maha712/Experiment-4---Implementation-of-MLP-with-Backpropagation/assets/121156360/f9a087c3-574c-445a-a865-331c19617556)
+
+
+## RESULT:
+
+Thus, the program to implement Multilayer Perceptron for Multi Classification is successfully implemented.
